@@ -1,0 +1,28 @@
+body {
+    background-color:aliceblue;
+    text-align:center;
+}
+
+#field {
+    table-layout:fixed;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+#field tr td {
+    border: 1px solid black;
+    background-color: white;
+    width: 25px;
+    height: 25px;
+    border-spacing: 0;
+    text-align:center;
+}
+
+#qtable tr td{
+    border: 1px solid black;
+    background-color:white;
+    width: 25px;
+    height: 25px;
+    border-spacing: 0;
+    text-align:center;
+}
