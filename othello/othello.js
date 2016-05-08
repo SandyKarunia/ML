@@ -381,10 +381,15 @@ $(document).ready(function(){
         //check if new board is terminating
         var winner = checkWinner(newBoard);
         if (winner==null) {
-            var nextMaxQValue = 0;
+            var nextMaxQValue = -1000;
+            var isNextTurnSame = false; //true if nextTurn player == currentTurn
             var nextAvailableMoves = getAvailableMovesBasedOnBoardAndTurn(newBoard, 1-currentTurn);
+            if (nextAvailableMoves.length == 0) {
+                nextAvailableMoves = getAvailableMovesBasedOnBoardAndTurn(newBoard, currentTurn);
+                isNextTurnSame = true;
+            }
             for (var i=0;i<nextAvailableMoves.length;i++) {
-                nextMaxQValue = Math.max(nextMaxQValue, getQValue(buildBoardStateAndAction(newBoard, 1-currentTurn, nextAvailableMoves[i].row, nextAvailableMoves[i].col)));
+                nextMaxQValue = Math.max(nextMaxQValue, getQValue(buildBoardStateAndAction(newBoard, (isNextTurnSame)?(currentTurn):(1-currentTurn), nextAvailableMoves[i].row, nextAvailableMoves[i].col)));
             }
             var scoreIncrement = 0;
             for (var i=0;i<8;i++) {
@@ -393,10 +398,12 @@ $(document).ready(function(){
                         scoreIncrement++;
                 }
             }
+
+            if (nextMaxQValue == -1000) throw new Error("IMPOSSIBLE!");
             
             if (scoreIncrement < 2) throw new Error("Score increment is less than 2");
             //-nextMaxQValue because of game theory
-            trainNN(buildBoardStateAndAction(board, currentTurn, row, col), Math.max(Math.min(64, scoreIncrement + tileReward[row][col] - gamma*nextMaxQValue), -64));
+            trainNN(buildBoardStateAndAction(board, currentTurn, row, col), Math.max(Math.min(64, scoreIncrement + tileReward[row][col] + ((isNextTurnSame)?(1):(-1))*gamma*nextMaxQValue), -64));
         } else {
             var reward = null;
             if (winner==2) //draw
