@@ -21,12 +21,26 @@ $(document).ready(function(){
     ];
     window.tileReward = tileReward;
     var gamma = 0.7;
-    var epsilon = 0.01;
+    var epsilon = 0.05;
     var computerDelay = 1;
     var net = new brain.NeuralNetwork({
-        hiddenLayers: [200, 300],
-        learningRate: 0.2
+        hiddenLayers: [419, 441],
+        learningRate: 0.1
     });
+
+    window.debugState = buildBoardStateAndAction(
+        [
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, 0, 1, null, null, null],
+            [null, null, null, 1, 0, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null, null]
+        ], 0, 5, 3
+    );
+
     //init structure
     window.initialBrainState = buildBoardStateAndAction(null);
     net.train([{input: buildBoardStateAndAction(null), output: [0]}], {initialization: true, iterations: 0});
@@ -42,6 +56,7 @@ $(document).ready(function(){
         blackComputerInput.attr('checked', false);
         blackComputer = false;
         whiteComputer = false;
+        epsilon = 0.001;
 
         $.ajax({
             url: "pre-trained-brain.js", // +-1100 x training vs self
@@ -228,6 +243,7 @@ $(document).ready(function(){
                 if ($("#auto-restart").is(":checked")) {
                     setTimeout(function(){
                         init();
+                        console.log(net.run(window.debugState));
                     }, 1);
                 }
                 return;
