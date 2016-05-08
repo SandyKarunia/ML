@@ -282,7 +282,11 @@ NeuralNetwork.prototype = {
     }
     var sizes = _([inputSize, hiddenSizes, outputSize]).flatten();
     if (initialization) {
-        console.log("initialize neural network");
+        var msg = "initialize neural network: ";
+        msg += inputSize;
+        for (var i=0;i<hiddenSizes.length;i++) msg+=", "+hiddenSizes[i];
+        msg += ", "+outputSize;
+        console.log(msg);
         this.initialize(sizes);
     }
 

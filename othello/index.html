@@ -1,0 +1,108 @@
+<html>
+<head>
+    <title>Othello</title>
+    <script type="text/javascript" src="../jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="../brain.js"></script>
+    <script type="text/javascript" src="othello.js"></script>
+    <link rel="stylesheet" type="text/css" href="othello.css"/>
+</head>
+<body>
+    <div style="display:inline-block; vertical-align: top; margin-right: 50px; margin-top: 150px;">
+        <div id="turn" style="background-color: green; display:inline-block; font-size:30px; padding:10px;"></div><br>
+        <div id="score" style="background-color: green; display:inline-block; font-size: 30px; padding: 10px;"></div><br>
+        <br>
+        computer delay: <button id="delay1">1</button> <button id="delay10">10</button> <button id="delay100">100</button> <button id="delay1000">1000</button> <button id="delay10000">10000</button><br>
+        current delay: <span id="delay">1ms</span><br><br>
+        <input type="checkbox" id="black-computer"/> Black is computer <input id="white-computer" type="checkbox" style="margin-left:20px;"/> White is computer<br>
+        <input type="checkbox" id="auto-restart"> Auto restart<br><br>
+        <button id="start">Start new game</button><br><br>
+        <button id="load-brain">Load pre-trained brain (WARNING this may take a while)</button>
+    </div>
+    <div style="display:inline-block;">
+        <h3 id="game-number">0</h3>
+        <table id="board">
+            <tr>
+                <td><div id="00"></div></td>
+                <td><div id="01"></div></td>
+                <td><div id="02"></div></td>
+                <td><div id="03"></div></td>
+                <td><div id="04"></div></td>
+                <td><div id="05"></div></td>
+                <td><div id="06"></div></td>
+                <td><div id="07"></div></td>
+            </tr>
+            <tr>
+                <td><div id="10"></div></td>
+                <td><div id="11"></div></td>
+                <td><div id="12"></div></td>
+                <td><div id="13"></div></td>
+                <td><div id="14"></div></td>
+                <td><div id="15"></div></td>
+                <td><div id="16"></div></td>
+                <td><div id="17"></div></td>
+            </tr>
+            <tr>
+                <td><div id="20"></div></td>
+                <td><div id="21"></div></td>
+                <td><div id="22"></div></td>
+                <td><div id="23"></div></td>
+                <td><div id="24"></div></td>
+                <td><div id="25"></div></td>
+                <td><div id="26"></div></td>
+                <td><div id="27"></div></td>
+            </tr>
+            <tr>
+                <td><div id="30"></div></td>
+                <td><div id="31"></div></td>
+                <td><div id="32"></div></td>
+                <td><div id="33"></div></td>
+                <td><div id="34"></div></td>
+                <td><div id="35"></div></td>
+                <td><div id="36"></div></td>
+                <td><div id="37"></div></td>
+            </tr>
+            <tr>
+                <td><div id="40"></div></td>
+                <td><div id="41"></div></td>
+                <td><div id="42"></div></td>
+                <td><div id="43"></div></td>
+                <td><div id="44"></div></td>
+                <td><div id="45"></div></td>
+                <td><div id="46"></div></td>
+                <td><div id="47"></div></td>
+            </tr>
+            <tr>
+                <td><div id="50"></div></td>
+                <td><div id="51"></div></td>
+                <td><div id="52"></div></td>
+                <td><div id="53"></div></td>
+                <td><div id="54"></div></td>
+                <td><div id="55"></div></td>
+                <td><div id="56"></div></td>
+                <td><div id="57"></div></td>
+            </tr>
+            <tr>
+                <td><div id="60"></div></td>
+                <td><div id="61"></div></td>
+                <td><div id="62"></div></td>
+                <td><div id="63"></div></td>
+                <td><div id="64"></div></td>
+                <td><div id="65"></div></td>
+                <td><div id="66"></div></td>
+                <td><div id="67"></div></td>
+            </tr>
+            <tr>
+                <td><div id="70"></div></td>
+                <td><div id="71"></div></td>
+                <td><div id="72"></div></td>
+                <td><div id="73"></div></td>
+                <td><div id="74"></div></td>
+                <td><div id="75"></div></td>
+                <td><div id="76"></div></td>
+                <td><div id="77"></div></td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

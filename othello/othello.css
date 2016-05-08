@@ -1,0 +1,37 @@
+body {
+    background-color: aliceblue;
+    text-align:center;
+}
+
+#board {
+    table-layout:fixed;
+    border-spacing: 0;
+    margin:auto;
+}
+
+#board tr td {
+    background-color: green;
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    position:relative;
+}
+
+#board tr td div {
+    position:absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: transparent;
+    top: 4px;
+    left: 6px;
+}
+
+#board tr td div.indicator {
+    background-color: red;
+    width: 10px;
+    height: 10px;
+    top: 19px;
+    left: 21px;
+}
