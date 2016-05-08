@@ -10,18 +10,18 @@ $(document).ready(function(){
     var blackComputerInput = $("#black-computer");
     var whiteComputerInput = $("#white-computer");
     var tileReward = [
-        [ 20, -10, 3, 3, 3, 3, -10,  20],
+        [ 40, -10, 3, 3, 3, 3, -10,  40],
         [-10, -10, 0, 0, 0, 0, -10, -10],
         [  3,   0, 0, 0, 0, 0,   0,   3],
         [  3,   0, 0, 0, 0, 0,   0,   3],
         [  3,   0, 0, 0, 0, 0,   0,   3],
         [  3,   0, 0, 0, 0, 0,   0,   3],
         [-10, -10, 0, 0, 0, 0, -10, -10],
-        [ 20, -10, 3, 3, 3, 3, -10,  20],
+        [ 40, -10, 3, 3, 3, 3, -10,  40]
     ];
     window.tileReward = tileReward;
     var gamma = 0.7;
-    var epsilon = 0.05;
+    window.epsilon = 0.05;
     var computerDelay = 1;
     var net = new brain.NeuralNetwork({
         hiddenLayers: [133, 133, 133],
@@ -56,7 +56,7 @@ $(document).ready(function(){
         blackComputerInput.attr('checked', false);
         blackComputer = false;
         whiteComputer = false;
-        epsilon = 0.001;
+        window.epsilon = 0.001;
 
         $.ajax({
             url: "pre-trained-brain.js", // +-1100 x training vs self
@@ -360,7 +360,7 @@ $(document).ready(function(){
     function runAIOnCurrentTurn(availableMoves) {
         var highestIndex = 0;
         var highestQValue = -100;
-        if (Math.random() <= epsilon) { //explore
+        if (Math.random() <= window.epsilon) { //explore
             highestIndex = Math.round(Math.random()*100)%availableMoves.length;
         } else {
             for (var i = 0; i < availableMoves.length; i++) {
