@@ -24,7 +24,7 @@ $(document).ready(function(){
     var epsilon = 0.05;
     var computerDelay = 1;
     var net = new brain.NeuralNetwork({
-        hiddenLayers: [419, 441],
+        hiddenLayers: [133, 133, 133],
         learningRate: 0.1
     });
 
